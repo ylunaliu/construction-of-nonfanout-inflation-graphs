@@ -136,10 +136,15 @@ if __name__ == "__main__":
                                        ("Y2", "B2"), ("Y2", "C2"), ("Z2", "C2"), ("Z2", "A1")])
     ring_six_inflation_hidden = list(["X1", "X2", "Y1", "Y2", "Z1", "Z2"])
 
-    edges = list(ring_six_inflation.edges)
-    nodes = ring_six_inflation.nodes
+    instrumental = nx.DiGraph()
+    instrumental.add_edges_from([("A1", "D1"), ("D1", "B1"), ("U1", "D1"), ("U1", "B1")])
+    instrumental_hidden = list(["U1"])
+
+    edges = list(instrumental.edges)
+    nodes = instrumental.nodes
     unique = get_unique_index(nodes)
     all_copy = modify_copy_inflation(1, unique, edges)
     switching_vector = make_switching_vector(len(edges))
+    print(len(edges))
 
     generate_non_fanout_inflation_edges(all_copy, len(edges), switching_vector,1)
